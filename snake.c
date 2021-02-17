@@ -7,42 +7,55 @@
 #define QUIT 3
 
 
-
-int life = 3;
-int score = 0;
+//TODO add sound to keystrokez
+int score;
 bool wallHit = false;
+bool gameOver;
 int tailSize = 4;
 char snake[200];
-int option;
+int width = 50;
+int height = 50;
+int gameplay; //gameplay
+int tokenX, tokenY; //x coordinate of token
+
+//used to keep up with directions
+typedef enum  {STOP = 0,LEFT,RIGHT,UP,DOWN} Direction;
+Direction Dir;
+
+//need variable to hold direction
 
 // starting menu
 void menu(){
 
   printf("\n\n\n\n\n");
   printf("%40s\n", "                      The Snake Game");
-  printf("%40s\n", "                      1) New Game (3 lives)");
-  printf("%40s\n", "                      2) Game with Borders (1 life)");
-  printf("%30s\n", "                      3) Quit Game");
-  scanf("%d", &option );
+  printf("%-40s\n", "                      1) New Game ");
+  printf("%-40s\n", "                      2) Game with Borders");
+  printf("%-40s\n", "                      3) Quit Game");
+  //maybe print out high score ever
+  scanf("%d", &gameplay );
 
 }
 
 //initialize / reset game
 void setup(){
-  switch(option){
-    case NEW:
-      break;
-    case BORDER:
-      break;
-    case QUIT:
-      break;
-    default:
-      break;
-  }
+  gameOver = false;
+  Dir = STOP;
+  tokenX = rand()%width; //remainder up to 49
+  tokenY = rand()%height;
+
 }
 
 
 //build perimeter and score/life display function
+void draw(){
+  system("clear"); //clears the screen
+  printf("%40s:%d\n", "                      Score", score);
+
+  //show score
+  //show lives
+
+}
 
 //take input function
 
@@ -59,7 +72,7 @@ void setup(){
 int main(){
   menu();
   setup();
-  //draw();
+  draw();
 
 
   return 0;
