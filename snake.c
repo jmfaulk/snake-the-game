@@ -14,7 +14,7 @@ bool gameOver;
 int tailSize = 4;
 char snake[200];
 int width = 50;
-int height = 50;
+int height = 30;
 int gameplay; //gameplay
 int tokenX, tokenY; //x coordinate of token
 
@@ -51,6 +51,23 @@ void setup(){
 void draw(){
   system("clear"); //clears the screen
   printf("%40s:%d\n", "                      Score", score);
+
+  //top border
+  for(int i = 0; i <= width; i++){
+    printf("=");
+  }
+  printf("\n");
+  //sides: more TODO here; ie code snake, and fruit etc.
+  for(int i = 0; i < height; i++){
+    printf("!%-50s!\n", " ");
+  }
+
+//bottom border
+  for(int i = 0; i <= width; i++){
+    printf("=");
+  }
+
+
 
   //show score
   //show lives
