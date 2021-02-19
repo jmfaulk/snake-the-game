@@ -8,21 +8,20 @@
 
 
 //TODO add sound to keystrokez
-int score;
 bool wallHit = false;
 bool gameOver;
-int tailSize = 4;
+int tailSize = 3;
 char snake[200];
 int width = 50;
 int height = 30;
 int gameplay; //gameplay
-int tokenX, tokenY; //x coordinate of token
+int tokenX, tokenY, snakeX, snakeY, score;
 
 //used to keep up with directions
 typedef enum  {STOP = 0,LEFT,RIGHT,UP,DOWN} Direction;
 Direction Dir;
 
-//need variable to hold direction
+
 
 // starting menu
 void menu(){
@@ -41,6 +40,8 @@ void menu(){
 void setup(){
   gameOver = false;
   Dir = STOP;
+  snakeX = width / 2;
+  snakeY = height / 2;
   tokenX = rand()%width; //remainder up to 49
   tokenY = rand()%height;
 
@@ -58,23 +59,36 @@ void draw(){
   }
   printf("\n");
   //sides: more TODO here; ie code snake, and fruit etc.
-  for(int i = 0; i < height; i++){
-    printf("!%-50s!\n", " ");
+
+  for(int i = 0; i <= height; i++){
+    printf("!"); //left border
+
+    if(i == tokenY){ //FRUIT
+      printf("%-*s", tokenX, " ");
+      printf("#"); //that delicious fruit baby
+      printf("%-*s", width - tokenX - 1, " "); //rest of the line
+    } else if(i == snakeY){ //SNAKE
+      printf("%-*s", snakeX - tailSize, " ");
+      for(int j = 0; j < tailSize; j++){
+        printf("*");
+      }
+      printf("%-*s", width - snakeX , " ");
+    }
+    else{
+      printf("%50s", " ");
+    }
+    printf("!\n"); //right border
   }
 
-//bottom border
+  //bottom border
   for(int i = 0; i <= width; i++){
     printf("=");
   }
-
-
-
   //show score
   //show lives
 
 }
 
-//take input function
 
 
 
